@@ -13,7 +13,7 @@
                     <!--header -->
                     <div class="header clearfix">
                         <a href="<?php echo base_url('hotel/view/'.$row->id); ?>">
-                        <img src="<?php echo base_url('upload/hotel_room/'.$row->image_link); ?>" alt="<?php echo $row->name; ?>" class="img-responsive" style="max-height: 175px;">
+                        <img src="<?php echo base_url('upload/hotel_room/'.$row->image_link); ?>" alt="<?php echo $row->name; ?>" class="img-responsive" style="height: 175px;">
                         </a>
                     </div>
                     <!-- Detail -->

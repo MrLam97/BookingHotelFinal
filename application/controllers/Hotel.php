@@ -224,9 +224,16 @@ class Hotel extends MY_Controller
 			// $date_to=get_date($date_to,true);
 			$this->data['date_to']=$date_to;
 		}
-		$days = ($date_to - $date_from) / (60 * 60 * 24);
 
+		$time=time();
+		$days = ($date_to - $date_from) / (60 * 60 * 24);
 		$this->data['days']=$days;
+		
+
+		if($date_from<$time || $days<=0){
+			$this->session->set_flashdata('message', 'Kiểm tra ngày trả phải sau ngày nhận và ngày nhận phải sau thời điểm hiện tại');
+			redirect();
+		}
 		if($days>0)
 		{
 			if($days>30)
@@ -244,61 +251,40 @@ class Hotel extends MY_Controller
 		$price_to=str_replace(',', '', $this->input->get('price_to'));
 		$price_to=intval($price_to);
 
-		$input=array();
-		$input['where']['status']=2;
+		$room_type_data="";
+		$provinces_data="";
+		$price_to_data="";
+		$price_from_data="";
 		if($room_type)
 		{
-			$input['where']['type_id']=$room_type;
+			$room_type_data=' and type_id =' .$room_type;
 		}
 		if($provinces)
 		{
-			$input['where']['provinces']=$provinces;
+			$provinces_data=' and provinces =' .$provinces;
 		}
 		if($price_to)
 		{
-			$input['where']['price<=']=$price_to;
+			$price_to_data=' and price <=' .$price_to;
 		}
 		if($price_from)
 		{
-			$input['where']['price>=']=$price_from;
+			$price_from_data=' and price >=' .$price_from;
 		}
 
-		$total = $this->hotel_model->get_total($input);
-		$this->data['total']=$total;
+		$query1='SELECT count(id) as id FROM hotel WHERE  status = 2 '. $room_type_data .$provinces_data .$price_to_data .$price_from_data .' AND id not in( select hotel_id from transaction where (check_in <= '.$date_from.' AND check_out >= '.$date_from.') or (check_in <= '.$date_to.' AND check_out >= '.$date_to.') )';
 
-		//load thu vien phan trang
- 		$this->load->library('pagination');
- 		
- 		$config['base_url'] = base_url('hotel/search_more'); //link hien thi ra danh sach phong
- 		$config['total_rows'] = $total; //tong số luong danh sach phong
- 		$config['per_page'] = 8; //so luong hien thi tren 1 trang
- 		$config['uri_segment'] = 3;
- 		$config['full_tag_open'] = "<ul class='pagination'>";
-		$config['full_tag_close'] ="</ul>";
-		$config['num_tag_open'] = '<li>';
-		$config['num_tag_close'] = '</li>';
-		$config['cur_tag_open'] = "<li class='disabled'><li class='active'><a href='#'>";
-		$config['cur_tag_close'] = "<span class='sr-only'></span></a></li>";
-		$config['next_tag_open'] = "<li>";
-		$config['next_tagl_close'] = "</li>";
-		$config['prev_tag_open'] = "<li>";
-		$config['prev_tagl_close'] = "</li>";
-		$config['first_tag_open'] = "<li>";
-		$config['first_tagl_close'] = "</li>";
-		$config['last_tag_open'] = "<li>";
-		$config['last_tagl_close'] = "</li>";
-		// $config['page_query_string'] = TRUE;
-		$config['use_page_numbers'] = TRUE;
- 		//khoi tao cau hinh phan trang
- 		$this->pagination->initialize($config);
- 		
- 		// echo $this->pagination->create_links();
- 		$segment=$this->uri->segment(3);
- 		// pre($segment);
- 		$segment=intval($segment);
- 		$input['limit']=array($config['per_page'],$segment);
+		$data = $this->hotel_model->query($query1);
+		foreach ($data as $row)
+			{
+			        $total = $row->id;
+			}
 
-		$list=$this->hotel_model->get_list($input);	
+		$this->data['total'] = $total;
+
+ 		$query='SELECT * FROM hotel WHERE  status = 2 '. $room_type_data .$provinces_data .$price_to_data .$price_from_data .' AND id not in( select hotel_id from transaction where (check_in <= '.$date_from.' AND check_out >= '.$date_from.') or (check_in <= '.$date_to.' AND check_out >= '.$date_to.') )	';
+
+		$list=$this->hotel_model->query($query);	
 		$this->data['list']=$list;
 
 

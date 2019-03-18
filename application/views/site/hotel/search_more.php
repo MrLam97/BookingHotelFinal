@@ -19,7 +19,7 @@
                     <!--header -->
                     <div class="header clearfix">
                         <a href="<?php echo base_url('hotel/view/'.$row->id.'/'.$date_from.'/'.$date_to.'/'.$price.'/'.$days); ?>">
-                        <img src="<?php echo base_url('upload/hotel_room/'.$row->image_link); ?>" alt="<?php echo $row->name; ?>" class="img-responsive" style="max-height: 175px;">
+                        <img src="<?php echo base_url('upload/hotel_room/'.$row->image_link); ?>" alt="<?php echo $row->name; ?>" class="img-responsive" style="height: 175px;">
                         </a>
                     </div>
                     <!-- Detail -->
@@ -71,16 +71,6 @@
             </div>  
 
             <?php endforeach ?>
-        </div>
-
-        <div class="text-center">
-            <!-- Page navigation start -->
-            <nav aria-label="Page navigation">
-                
-                     <?php echo $this->pagination->create_links(); ?> -
-               
-            </nav>
-            <!-- Page navigation end -->
         </div>
     </div>
 </div>
