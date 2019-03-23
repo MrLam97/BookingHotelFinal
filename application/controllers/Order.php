@@ -19,14 +19,13 @@ class Order extends MY_Controller
 		$people = $this->input->post('people');
 		$price = $this->input->post('price');
 
-		$query='SELECT count(id) as id FROM transaction WHERE (check_in<='.strtotime($date_from).' and check_out>='.strtotime($date_from).') or (check_in<='.strtotime($date_to).' and check_out>='.strtotime($date_to).') and hotel_id='.$hotel_id;
-		$data=$this->order_model->query($query);
+		$dk='((check_in<='.strtotime($date_from).' and check_out>='.strtotime($date_from).') or (check_in<='.strtotime($date_to).' and check_out>='.strtotime($date_to).')) and hotel_id='.$hotel_id;
+		$input['where']=$dk;
+		$data=$this->order_model->get_total($input);
 		
-		foreach ($data as $row) {
-			if($row->id>0){
-				$this->session->set_flashdata('message', 'Trong khoảng thời gian từ: '.$date_from.' đến '.$date_to.' đã có người đặt phòng này. Vui lòng chọn ngày khác hoặc phòng khác.');
-				redirect('hotel/view/'.$hotel_id);
-			}
+		if($data>0){
+			$this->session->set_flashdata('message', 'Trong khoảng thời gian từ: '.$date_from.' đến '.$date_to.' đã có người đặt phòng này. Vui lòng chọn ngày khác hoặc phòng khác.');
+			redirect('hotel/view/'.$hotel_id);
 		}
 
 		$this->data['date_from']=$date_from;

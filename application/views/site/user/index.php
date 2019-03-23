@@ -38,3 +38,55 @@
         </span>
     </div>
 </div>
+<div class="row" style="text-align: center;">
+    <div class="col col-md-2"></div>
+    <div class="col col-md-8">
+        <h3 style="font-weight: bold;">
+            Lịch sử đặt phòng
+        </h3>
+        <hr />
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <td style="font-weight: bold;text-align: center; font-size: 23px; color: #3ac4fa;">
+                            Khách sạn
+                        </td>
+                         <td style="font-weight: bold;text-align: center; font-size: 23px; color: #3ac4fa;">
+                            Ngày nhận phòng
+                        </td>
+                         <td style="font-weight: bold;text-align: center; font-size: 23px; color: #3ac4fa;">
+                            Ngày trả phòng
+                        </td>
+                         <td style="font-weight: bold;text-align: center; font-size: 23px; color: #3ac4fa;">
+                            Tổng tiền
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($history as $row): ?>
+                        <tr>
+                             <td style="text-align: center;">
+                                <?php foreach ($hotel as $row1) 
+                                {
+                                    if($row1->id==$row->hotel_id)
+                                    {
+                                        echo $row1->name;
+                                        break;
+                                    }
+                                } ?>
+                            </td>
+                            <td style="text-align: center;">
+                                 <?php echo get_date($row->check_in,false); ?>
+                            </td>
+                            <td style="text-align: center;">
+                                 <?php echo get_date($row->check_out,false); ?>
+                            </td>
+                            <td style="text-align: center;">
+                                 <?php echo number_format($row->amount); ?> VNĐ
+                            </td>
+                        </tr>
+                    <?php endforeach ?>
+                </tbody>
+            </table>
+    </div>
+</div>

@@ -133,7 +133,16 @@
  	//Thông tin thành viên
  	function index()
  	{
-
+ 		$this->load->model('order_model');
+ 		$this->load->model('hotel_model');
+ 		$user_id=$this->session->userdata('user_id_login');
+ 		//lấy lịch sử đặt phòng
+ 		$input=array();
+ 		$input['where']['user_id']=$user_id;
+ 		$history=$this->order_model->get_list($input);
+ 		$hotel=$this->hotel_model->get_list();
+ 		$this->data['history']=$history;
+ 		$this->data['hotel']=$hotel;
  		$this->data['title']='Thông tin';
  		$this->data['temp']='site/user/index';
 		$this->load->view('site/layout', $this->data);
@@ -226,4 +235,5 @@
  		$this->session->set_flashdata('message', 'Đăng xuất thành công');
  		redirect();
  	}
+
  } ?>
