@@ -4,7 +4,7 @@
 */
 class MY_Controller extends CI_Controller
 {
-	// Biến gửi dữ liệu sang bên view
+	// Biến gửi dữ liệu sang view
 	public $data=array();
 
 	function __construct()

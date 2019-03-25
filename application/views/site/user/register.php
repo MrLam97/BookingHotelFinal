@@ -7,7 +7,7 @@
                 <div class="form-content-box">
                     <!-- logo -->
                     <a href="index.html" class="clearfix alpha-logo">
-                        <img src="img/logos/white-logo.png" alt="white-logo">
+                        <img src="<?php echo public_url('site')?>/img/logos/white-logo.png" alt="white-logo">
                     </a>
                     <!-- details -->
                     <div class="details">

@@ -7,7 +7,7 @@
                 <div class="form-content-box">
                     <!-- logo -->
                     <a href="index.html" class="clearfix alpha-logo">
-                        <img src="img/logos/white-logo.png" alt="white-logo">
+                        <img src="<?php echo public_url('site')?>/img/logos/white-logo.png" alt="white-logo">
                     </a>
                     <!-- details -->
                     <div class="details">
@@ -30,7 +30,7 @@
                                         Nhớ tài khoản.
                                     </label>
                                 </div>
-                                <a href="forgot-password.html" class="link-not-important pull-right">Quên mật khẩu?</a>
+                                <a href="forgot_password" class="link-not-important pull-right">Quên mật khẩu?</a>
                                 <div class="clearfix"></div>
                             </div>
                             <div class="mb-0">
@@ -43,7 +43,7 @@
                     <!-- Footer -->
                     <div class="footer">
                         <span>
-                            Chưa có tài khoản? <a href="signup.html">Đăng ký ngay!!</a>
+                            Chưa có tài khoản? <a href="register">Đăng ký ngay!!</a>
                         </span>
                     </div>
                 </div>

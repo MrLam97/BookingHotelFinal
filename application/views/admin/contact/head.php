@@ -4,7 +4,7 @@
 	<div class="wrapper">
 		<div class="pageTitle">
 			<h5>Liên hệ</h5>
-			<span>Quản lý lien hệ</span>
+			<span>Quản lý liên hệ</span>
 		</div>
 		
 		

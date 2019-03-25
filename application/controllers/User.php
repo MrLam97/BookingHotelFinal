@@ -236,4 +236,8 @@
  		redirect();
  	}
 
+ 	function forgot_password()
+ 	{
+ 		echo "<h1>Vui lòng liên hệ quản trị viên <3<3 </h1>";
+ 	}
  } ?>
