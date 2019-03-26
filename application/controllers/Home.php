@@ -18,10 +18,11 @@
  		//Lấy danh sách thanh pho, quan huyen
  		$this->load->model('provinces_model');
  		$this->load->model('wards_model');
- 		$provinces=$this->provinces_model->get_list();
+ 		$dieukien['order']=array('title','ASC');
+ 		$provinces=$this->provinces_model->get_list($dieukien);
  		$wards=$this->wards_model->get_list();
 
- 		//Lấy danh sách bài viết
+ 		//Lấy danh sách bài viết	
  		$this->load->model('blog_model');
  		$input=array();
  		$input['limit'] = array('3' ,'0');

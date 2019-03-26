@@ -72,6 +72,10 @@
 <script  src="<?php echo public_url('site/') ?>js/bootstrap-datepicker.min.js"></script>
 <script  src="<?php echo public_url('site/') ?>autocomplete/jquery-ui.js"></script>
 <script  src="<?php echo public_url('site/') ?>js/app.js"></script>
+<script  src="<?php echo public_url('site/') ?>js/bootbox.all.min.js"></script>
+<script  src="<?php echo public_url('site/') ?>js/bootbox.locales.min.js"></script>
+<script  src="<?php echo public_url('site/') ?>js/bootbox.min.js"></script>
+
 
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script  src="<?php echo public_url('site/') ?>js/ie10-viewport-bug-workaround.js"></script>
